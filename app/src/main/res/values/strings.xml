@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">LocalNotification</string>
+    <string name="launch_local_notification">Launch Local Notification</string>
+    <string name="add_your_title_here">Add your title here</string>
+    <string name="add_your_message_here">Add your message here</string>
+    <string name="select_an_item">Select an item</string>
+    <string name="local_notifications_with_work">Local Notifications with Work</string>
+</resources>
