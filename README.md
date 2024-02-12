@@ -26,7 +26,7 @@ This project is maintained by:
 ## Built with
 
 - [Kotlin](https://kotlinlang.org/) - For coding.
-- [Dagger Hilt](https://developer.android.com/jetpack/androidx/releases/work) -For schedule deferrable 
+- [Work](https://developer.android.com/jetpack/androidx/releases/work) -For schedule deferrable 
 asynchronous tasks that must be executed reliably..
 
 ## How I run the app?
