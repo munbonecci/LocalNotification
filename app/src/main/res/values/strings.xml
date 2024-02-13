@@ -5,4 +5,8 @@
     <string name="add_your_message_here">Add your message here</string>
     <string name="select_an_item">Select an item</string>
     <string name="local_notifications_with_work">Local Notifications with Work</string>
+    <string name="select_an_option">Select an option (default: 1 minute)</string>
+    <string name="one_minute">1 minute</string>
+    <string name="two_minutes">2 minutes</string>
+    <string name="three_minutes">3 minutes</string>
 </resources>
