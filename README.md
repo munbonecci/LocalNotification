@@ -26,8 +26,9 @@ This project is maintained by:
 ## Built with
 
 - [Kotlin](https://kotlinlang.org/) - For coding.
-- [Work](https://developer.android.com/jetpack/androidx/releases/work) -For schedule deferrable 
-asynchronous tasks that must be executed reliably..
+- [WorkManager](https://developer.android.com/jetpack/androidx/releases/work) - For schedule deferrable 
+asynchronous tasks that must be executed reliably.
+- [Notification](https://developer.android.com/develop/ui/views/notifications/build-notification) - For local notifications.
 
 ## How I run the app?
 
