@@ -59,6 +59,8 @@ class NotificationWorker(context: Context, params: WorkerParameters) : Worker(co
             .setContentTitle(title)
             .setContentText(message)
             .setSmallIcon(R.drawable.ic_launcher_background)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setAutoCancel(true)
             .build()
 
         // Display the notification
