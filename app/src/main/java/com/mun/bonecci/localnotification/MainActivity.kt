@@ -1,11 +1,19 @@
 package com.mun.bonecci.localnotification
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.work.Data
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
@@ -22,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(initViewBinding(layoutInflater))
 
+        requestNotificationPermission()
         setupSpinner()
         setupLaunchButton()
     }
@@ -105,6 +114,50 @@ class MainActivity : AppCompatActivity() {
 
         // Enqueue the work request with WorkManager to schedule the notification
         WorkManager.getInstance(this).enqueue(workRequest)
+    }
+
+    /**
+     * An ActivityResultLauncher for requesting notification permission.
+     * It logs whether the user granted or denied permission.
+     */
+    private var requestPermissionLauncher: ActivityResultLauncher<String> =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+            if (!isGranted) {
+                Log.d("POST_NOTIFICATION_PERMISSION", "USER DENIED PERMISSION")
+            } else {
+                Log.d("POST_NOTIFICATION_PERMISSION", "USER GRANTED PERMISSION")
+            }
+        }
+
+    /**
+     * Requests notification permission if it's not granted.
+     * Shows a toast message indicating the permission status.
+     */
+    private fun requestNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            val permission = Manifest.permission.POST_NOTIFICATIONS
+            when {
+                ContextCompat.checkSelfPermission(
+                    this, permission
+                ) == PackageManager.PERMISSION_GRANTED -> {
+                    // Action to take when permission is already granted
+                    Toast.makeText(this, "Permission granted", Toast.LENGTH_LONG).show()
+                }
+
+                shouldShowRequestPermissionRationale(permission) -> {
+                    // Action to take when permission was denied permanently
+                    Toast.makeText(this, "Permission denied permanently", Toast.LENGTH_LONG).show()
+                }
+
+                else -> {
+                    // Request permission
+                    requestPermissionLauncher.launch(permission)
+                }
+            }
+        } else {
+            // Device does not support required permission
+            Toast.makeText(this, "No required permission", Toast.LENGTH_LONG).show()
+        }
     }
 
 
