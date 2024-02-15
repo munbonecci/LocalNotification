@@ -1,7 +1,7 @@
 <h1 align="center">Local Notification</h1> 
 
 <p align="center">
-This app was created to learn more about Local notifications in Android
+This app was created to learn more about how to display a local notification in Android 13 by requesting notification permission and using WorkManager.
 </p>
 
 ## Installation
